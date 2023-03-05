@@ -1,4 +1,4 @@
-# Real Time IMport for Exchange Rate and Plot
+# Real Time Import for Exchange Rate and Plot
 
 This project aims to visusalize the exchange rates in real time.
 In this project we're using Alpha Vantage API inorder to import the real time recurring exchange rate date for CAD to INR.
