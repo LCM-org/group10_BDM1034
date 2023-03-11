@@ -1,6 +1,7 @@
 # Real Time Import for Exchange Rate and Plot
 
-This project aims to visusalize the exchange rates in real time.
+This project aims to visusalize the exchange rates in real time and build a statistical model inorder to predict the future prices.
+In this project ], we're using exponential moving average with smoothing factor as 0.9 as our base model and training the model over real time data getting fectched from Alpha Vantage API.
 In this project we're using Alpha Vantage API inorder to import the real time recurring exchange rate date for CAD to INR.
 
 We're using requests libraries HTTPS GET menthod inorder ot fetch the data from the alha vantage endpoint API.
