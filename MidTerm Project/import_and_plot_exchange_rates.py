@@ -34,13 +34,13 @@ ys = []
 def animate(i, xs, ys):
 
     # Read temperature (Celsius) from TMP102
-    time.sleep(4)
-    exchange_rate_response = get_currency_exchange_rate(from_currency="CAD", 
-                                        to_currency="INR"
-                                        )['Realtime Currency Exchange Rate']['5. Exchange Rate']
+    # time.sleep(10)
+    # exchange_rate_response = float(get_currency_exchange_rate(from_currency="CAD", 
+    #                                     to_currency="INR"
+    #                                     )['Realtime Currency Exchange Rate']['5. Exchange Rate'])
 
     time.sleep(4)
-    exchange_rate_response = 60 + random.random() / 3
+    exchange_rate_response = 60 + random.random() / 7
 
     # Add x and y to lists
     xs.append(dt.datetime.now().strftime('%H:%M:%S.%f'))
@@ -50,9 +50,40 @@ def animate(i, xs, ys):
     xs = xs[-20:]
     ys = ys[-20:]
 
+
+
+    #Moving Averages Calculations
+    moving_averages = []
+  
+    # Insert first exponential average in the list
+    moving_averages.append(ys[0])
+
+    x = 0.9
+  
+    i_ = 0
+
+    # Loop through the array elements
+    while i_ < len(ys):
+      
+        # Calculate the exponential
+        # average by using the formula
+        window_average = round((x*ys[i_])+
+                              (1-x)*moving_averages[-1], 2)
+          
+        # Store the cumulative average
+        # of current window in moving average list
+        moving_averages.append(window_average)
+          
+        # Shift window to right by one position
+        i_ += 1
+
     # Draw x and y lists
     ax.clear()
     ax.plot(xs, ys)
+
+    print(moving_averages)
+
+    ax.plot(xs, moving_averages[:len(xs)])
 
     # Format plot
     plt.xticks(rotation=45, ha='right')
